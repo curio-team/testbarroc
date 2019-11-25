@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $this->middleware('role:2');
         return view('home');
     }
 }

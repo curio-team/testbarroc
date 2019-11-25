@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function() {
+
+    return 'ik mag hier komen...';
+
+})->middleware(['auth','role:3']);
+
+// php artisan make:middleware CheckRole
+
+Route::get('mail', function() {
+    // php artisan make:mail TestMail --markdown=emails/testemail
+    \Mail::to('admin@blabla.nl')->send( new \App\Mail\TestMail() );
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
