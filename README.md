@@ -1,3 +1,15 @@
+What to do after cloning a laravel project:
+
+clone the project
+in the project folder:
+
+- composer install
+- copy .env.example and rename to .env
+- database aanmaken
+- add your personal (database) data to .env
+- php artisan key:generate
+- php artisan migrate:fresh --seed
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
