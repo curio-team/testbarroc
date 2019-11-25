@@ -8,6 +8,7 @@ in the project folder:
 - database aanmaken
 - add your personal (database) data to .env
 - php artisan key:generate
+- php artisan migrate:fresh --seed
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
