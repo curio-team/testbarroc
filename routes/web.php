@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('purchases', 'PurchaseController');
+
 Route::get('/test', function() {
 
     return 'ik mag hier komen...';

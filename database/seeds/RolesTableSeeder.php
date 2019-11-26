@@ -30,6 +30,9 @@ class RolesTableSeeder extends Seeder
            ],
             [
                 'name' => 'inkoop'
+            ],
+            [
+                'name' => 'customer'
             ]
         ]);
     }

@@ -29,7 +29,31 @@ class UsersTableSeeder extends Seeder
                'name'   => 'Sales Medewerker',
                'password' => Hash::make('barroc123'),
                'role_id'  => 2
-           ]
+           ],
+            [
+                'email'  => 'customer@campina.nl',
+                'name'   => 'customer campina',
+                'password' => Hash::make('barroc123'),
+                'role_id'  => 7
+            ],
+            [
+                'email'  => 'customer@curio.nl',
+                'name'   => 'customer curio',
+                'password' => Hash::make('barroc123'),
+                'role_id'  => 7
+            ],
+            [
+                'email'  => 'finance@barroc.nl',
+                'name'   => 'Finance Medewerkers',
+                'password' => Hash::make('barroc123'),
+                'role_id'  => 3
+            ],
+            [
+                'email'  => 'maintenance@barroc.nl',
+                'name'   => 'Maintenance Medewerker',
+                'password' => Hash::make('barroc123'),
+                'role_id'  => 4
+            ]
         ]);
     }
 }
