@@ -11,15 +11,24 @@ class Lease_rulesSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('lease_rules')->insert([
-            [
-                'lease_id'  => 1,
-                'supply_id' => 1
-            ],
-            [
-                'lease_id'  => 1,
-                'supply_id' => 4
-            ]
-        ]);
+        $faker = \Faker\Factory::create();
+        $leases = \App\Lease::all();
+        $supplies = \App\Supply::all();
+
+        foreach($leases as $lease)
+        {
+            for($i = 0; $i < $faker->numberBetween(1, 5); $i++)
+            {
+                \DB::table('lease_rules')->insert([
+                    [
+                        'lease_id'  => $lease->id,
+                        'supply_id' => $supplies->random()->id,
+                        'created_at'    => $faker->dateTime,
+                        'updated_at'    => $faker->dateTime
+                    ]
+                ]);
+
+            }
+        }
     }
 }

@@ -11,26 +11,21 @@ class CompanyDetailsSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('companydetails')->insert(
-            [
-                [
-                    'user_id'       => 4,
-                    'address'       => 'Vosdonk 14',
-                    'city'          => 'Etten-Leur',
-                    'postcode'      => '4876 EK',
-                    'email'         => 'info@campina.nl',
-                    'telefoonnummer'    => '076-1234567'
-                ],
-                [
-                    'user_id'       => 5,
-                    'address'       => 'Terheijdenseweg 350',
-                    'city'          => 'Breda',
-                    'postcode'      => '4822AA',
-                    'email'         => 'info@curio.nl',
-                    'telefoonnummer'    => '076-5733444'
-                ],
 
-            ]
-        );
+        $faker = \Faker\Factory::create();
+        $customers = \App\User::where('role_id', 7)->get();
+
+        foreach($customers as $user) {
+            \DB::table('companydetails')->insert([
+                'user_id'       => $user->id,
+                'address'       => $faker->streetAddress,
+                'city'          => $faker->city,
+                'postcode'      => $faker->postcode,
+                'email'         => $faker->safeEmail,
+                'telefoonnummer'=> $faker->phoneNumber,
+                'created_at'    => $faker->dateTime,
+                'updated_at'    => $faker->dateTime
+            ]);
+        }
     }
 }

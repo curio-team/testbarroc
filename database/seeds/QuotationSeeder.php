@@ -11,31 +11,25 @@ class QuotationSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('quotations')->insert([
-            [
-                'sales_id'          => 3,
-                'customer_id'       => 4,
-                'content'           => "Het leasen en installeren van twee koffie automaten met koffiebonen type 2",
-                'pricing'           => "Installatiekosten 420,- & leasekosten maandelijks á 665,-",
-                'finance_approved'  => 1,
-                'customer_approved' => 0
-            ],
-            [
-                'sales_id'          => 3,
-                'customer_id'       => 5,
-                'content'           => "Het leasen en installeren van 'Koffiemachine 1'  met 'koffiebonen type 2'",
-                'pricing'           => "Installatiekosten 220,- & leasekosten maandelijks á 345,-",
-                'finance_approved'  => 1,
-                'customer_approved' => 1
-            ],
-            [
-                'sales_id'          => 3,
-                'customer_id'       => 5,
-                'content'           => "Het leasen en installeren van 'Koffiemachine 1'  met 'koffiebonen type 2'",
-                'pricing'           => "Installatiekosten 270,- & leasekosten maandelijks á 365,-",
-                'finance_approved'  => 1,
-                'customer_approved' => 0
-            ]
-        ]);
+        $faker = \Faker\Factory::create();
+        $customers = \App\User::where('role_id', 7)->get();
+        $sales = \App\User::where('role_id', 2)->get();
+
+        foreach($customers as $user) {
+            for($i = 0; $i < $faker->numberBetween(0, 3); $i++) {
+                \DB::table('quotations')->insert([
+                    [
+                        'sales_id'          => $sales->random()->id,
+                        'customer_id'       => $user->id,
+                        'content'           => $faker->text,
+                        'pricing'           => $faker->numerify("Installatiekosten ###,- & leasekosten maandelijks á ###,-"),
+                        'finance_approved'  => $faker->boolean,
+                        'customer_approved' => $faker->boolean,
+                        'created_at'        => $faker->dateTime,
+                        'updated_at'        => $faker->dateTime,
+                    ]
+                ]);
+            }
+        }
     }
 }

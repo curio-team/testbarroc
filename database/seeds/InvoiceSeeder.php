@@ -11,22 +11,22 @@ class InvoiceSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('invoices')->insert([
-            [
-                'lease_id' => 1,
-                'betaald_op' => '2019-12-11',
-                'created_at'    => '2019-11-11'
-            ],
-            [
-                'lease_id'      => 1,
-                'betaald_op'    => '2020-01-01',
-                'created_at'    =>  '2019-12-12'
-            ],
-            [
-                'lease_id'      => 1,
-                'betaald_op'    => null,
-                'created_at'    => '2020-01-01'
-            ]
-        ]);
+        $faker = \Faker\Factory::create();
+        $leases = \App\Lease::all();
+
+        foreach($leases as $lease)
+        {
+            for($i = 0; $i < $faker->numberBetween(1, 10); $i++)
+            {
+                \DB::table('invoices')->insert([
+                    [
+                        'lease_id'      => $lease->id,
+                        'betaald_op'    => $faker->boolean ? $faker->dateTime : null,
+                        'created_at'    => $faker->dateTime,
+                        'updated_at'    => $faker->dateTime
+                    ]
+                ]);
+            }
+        }
     }
 }
